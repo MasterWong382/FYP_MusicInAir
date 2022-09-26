@@ -58,9 +58,19 @@ public class UnitySoundLeap : MonoBehaviour
 
     public float sampleRate = 44100;
     public float waveLengthInSeconds = 2.0f;
+    CsoundUnity _csound;
+
+    //Csound
+
+
+
     // Start is called before the first frame update
+
+
     void Start()
     {
+        _csound = GetComponent<CsoundUnity>();
+
         //  Debug.Log("Screen Height : " + Screen.height);
         // Debug.Log("Screen Width : " + Screen.width);
         CalculateTotalNote();
@@ -72,6 +82,7 @@ public class UnitySoundLeap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         Controller leap = new Controller();
         Frame frame = leap.Frame();
         Hand f1 = new Hand();
@@ -144,9 +155,10 @@ public class UnitySoundLeap : MonoBehaviour
         UpdateCurrentAmp();
         volumeDisplay.text = amplitude.ToString();
         handBorderGuide.CheckHandBoundary(f1.Fingers[2].TipPosition.x, f2.Fingers[2].TipPosition.x);
-       
-       
- 
+        _csound.SetChannel("Frequency", frequency);
+        _csound.SetChannel("Amplitude", currentAmp);
+
+
     }
 
     void UpdatePitchIndicator()
@@ -234,7 +246,7 @@ public class UnitySoundLeap : MonoBehaviour
         noteKey = (int)noteIndex % 12;
         DisplayNote(noteKey);
     }
-
+    /*
     void OnAudioFilterRead(float[] data, int channels)
     {
         // if (playSound)
@@ -298,6 +310,7 @@ public class UnitySoundLeap : MonoBehaviour
 
 
     }
+    */
 
     public void SetOctave(float newNumber)
     {

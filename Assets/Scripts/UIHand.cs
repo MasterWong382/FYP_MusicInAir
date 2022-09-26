@@ -31,8 +31,8 @@ public class UIHand : MonoBehaviour
     //instrument Select
     public Dropdown musicSelectDropDown;
 
-    public GameObject pianoGuidesOnly;
-    public GameObject noteGuidesOnly;
+    public GameObject keyBoardGuidesOnly;
+    public GameObject keyGuidesOnly;
     bool showPianoGuide = false;
  
 
@@ -157,4 +157,17 @@ public class UIHand : MonoBehaviour
         unitySound.SetWaveType(musicSelectDropDown.value);
     }
    
+
+    public void ToggleNoteGuide()
+    {
+        keyGuidesOnly.SetActive(!keyGuidesOnly.activeSelf);
+    }
+
+
+    public void ToggleKeyboardGuide()
+    {
+        keyBoardGuidesOnly.SetActive(!keyBoardGuidesOnly.activeSelf);
+    }
+
+ 
 }
