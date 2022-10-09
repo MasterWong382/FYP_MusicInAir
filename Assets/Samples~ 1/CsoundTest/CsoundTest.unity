@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,11 +171,28 @@ MonoBehaviour:
   logCsoundOutput: 0
   mute: 0
   processClipAudio: 0
+  loudVolumeWarning: 1
+  loudWarningThreshold: 10
   csoundScore: 
-  _csoundFileGUID: 
-  _csoundString: 
-  _csoundFileName: 
-  _csoundAsset: {fileID: 0}
+  environmentSettings: []
+  _csoundFileGUID: 2795d57346cdfc5439f76d4366f50a6c
+  _csoundString: "<CsoundSynthesizer>\r\n<CsOptions>\r\n-n -d \r\n</CsOptions>\r\n\r\nsr=44100
+    ; Sample Rate\r\nkr=22050 ; Control Rate\r\nksmps=2  ; sr/kr As far as I know
+    this is always the case\r\nnchnls=2 ; 1=mono, 2=stereo, 4=quad\r\n\r\n<CsInstruments>\r\ninstr 
+    1                     ; Instrument 1 begins here\r\nkfreq chnget \"Frequency\"    
+    ; Frequency\r\nkamp chnget \"Amplitude\"      ; Amplitude            \r\nitabl1
+    =      2                   ; Waveform Table\r\naout   oscil  kamp*40000, kfreq,
+    itabl1    ; An oscillator\r\n       outs   aout, aout            ; Output the
+    results to a stereo sound file\r\n       endin                        ; Instrument
+    1 ends here\r\n</CsInstruments>\r\n\r\n<CsScore>\r\n; SCORE\r\nf1 0 16384 10
+    1                                          ; Sine\r\nf2 0 16384 10 1 0.5 0.3
+    0.25 0.2 0.167 0.14 0.125 .111   ; Sawtooth\r\nf3 0 16384 10 1 0   0.3 0    0.2
+    0     0.14 0     .111   ; Square\r\nf4 0 16384 10 1 1   1   1    0.7 0.5   0.3 
+    0.1          ; Pulse\r\nf5 0 16384 10 1 0.3 0.05 0.1 0.01                       
+    ; Custom\r\n\r\n;Instrument#(p1) Start(p2) Duration(p3) Amplitude(p4) Frequency(p5)
+    Table(p6)\r\ni1               0         3600\r\n\r\n</CsScore>\r\n</CsoundSynthesizer>"
+  _csoundFileName: instrument1.csd
+  _csoundAsset: {fileID: 102900000, guid: 2795d57346cdfc5439f76d4366f50a6c, type: 3}
   _channels: []
   _availableAudioChannels: []
   _drawCsoundString: 0
@@ -183,6 +200,7 @@ MonoBehaviour:
   _drawSettings: 0
   _drawChannels: 0
   _drawAudioChannels: 0
+  _showRuntimeEnvironmentPath: 0
 --- !u!82 &783735160
 AudioSource:
   m_ObjectHideFlags: 0

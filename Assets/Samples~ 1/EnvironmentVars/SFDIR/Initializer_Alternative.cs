@@ -11,7 +11,9 @@ namespace Csound.EnvironmentVars
         [Tooltip("Ensure this CsoundUnity GameObject is inactive when hitting play, " +
             "otherwise the CsoundUnity initialization will run. " +
             "Setting the Environment Variables on a running Csound instance can have unintended effects.")]
-        public CsoundUnity CsoundUnity;
+        public CsoundUnity csoundUnity;
+        public float frequency;
+        public int preset;
 
         // Start is called before the first frame update
         void Start()
@@ -36,7 +38,14 @@ namespace Csound.EnvironmentVars
                 }
             }
             // activate CsoundUnity!
-            CsoundUnity.gameObject.SetActive(true);
+            csoundUnity.gameObject.SetActive(true);
+
+        }
+
+        void Update()
+        {
+            csoundUnity.SetChannel("Frequency", frequency);
+            csoundUnity.SetChannel("Preset", preset);
         }
     }
 }

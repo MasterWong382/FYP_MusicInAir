@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class TestSound : MonoBehaviour
 {
-    AudioSource audioSource;
-
+    CsoundUnity csoundUnity;
+    float frequency;
     // Start is called before the first frame update
     void Start()
     {
-        audioSource= GetComponent<AudioSource>();    
+        csoundUnity = GetComponent<CsoundUnity>();
+        frequency = 440f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+
+        csoundUnity.SetChannel("freq", frequency);
+        
+        if (Input.GetKey(KeyCode.E)){
+            frequency += 10f;
+        }
+        if (Input.GetKey(KeyCode.Q))
         {
-            audioSource.pitch = Mathf.Pow(2f, 1f / 12f);
-           
+            frequency -= 10f;
         }
     }
 }

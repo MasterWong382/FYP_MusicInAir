@@ -8,11 +8,13 @@ using Leap.Unity;
 
 public class UnitySoundLeap : MonoBehaviour
 {
+    public bool useSoundLibrary;
+
     public UIHand uiScript;
     AudioSource audioSource;
     Vector3 mousePos;
     double frequency = 440;
-    int startingFrequency = 220;
+    int startingFrequency = 440;
     double amplitude = 1;
     double currentAmp = 0;
     double maxAmp = 4;
@@ -58,8 +60,9 @@ public class UnitySoundLeap : MonoBehaviour
 
     public float sampleRate = 44100;
     public float waveLengthInSeconds = 2.0f;
+    public GameObject librarySound;
+    public GameObject unityDefaultSound;
     CsoundUnity _csound;
-
     //Csound
 
 
@@ -69,14 +72,14 @@ public class UnitySoundLeap : MonoBehaviour
 
     void Start()
     {
-        _csound = GetComponent<CsoundUnity>();
-
         //  Debug.Log("Screen Height : " + Screen.height);
         // Debug.Log("Screen Width : " + Screen.width);
+        _csound = GetComponent<CsoundUnity>();
         CalculateTotalNote();
         UpdateGuide();
         rightHandPositionRange = maxPitchPosition - minPitchPosition;
         leftHandPositionRange = maxVolumePosition - minVolumePosition;
+        useSoundLibrary = true;
     }
 
     // Update is called once per frame
@@ -155,12 +158,38 @@ public class UnitySoundLeap : MonoBehaviour
         UpdateCurrentAmp();
         volumeDisplay.text = amplitude.ToString();
         handBorderGuide.CheckHandBoundary(f1.Fingers[2].TipPosition.x, f2.Fingers[2].TipPosition.x);
-        _csound.SetChannel("Frequency", frequency);
-        _csound.SetChannel("Amplitude", currentAmp);
 
-
+        if (!useSoundLibrary)
+        {
+            unityDefaultSound.SetActive(true);
+            librarySound.SetActive(false);
+            UpdateDefaultSound();
+        }
+        else
+        {
+            unityDefaultSound.SetActive(false);
+            librarySound.SetActive(true);
+            UpdateLibrarySound();
+        }
+        // UpdateLibrarySound();
+        // UpdateDefaultSound(); 
+      //  _csound.SetChannel("Frequency", frequency);
+      //  _csound.SetChannel("Amplitude", currentAmp);
     }
 
+    void UpdateDefaultSound()
+    {
+        unityDefaultSound.GetComponent<DefaultSound>().SetAmp(currentAmp);
+        unityDefaultSound.GetComponent<DefaultSound>().SetFrequency(frequency);
+        unityDefaultSound.GetComponent<DefaultSound>().SetWaveTypeIndex(waveTypeIndex);
+        unityDefaultSound.GetComponent<DefaultSound>().isRightHandIn(rightHandIn);
+    }
+    void UpdateLibrarySound()
+    {
+        librarySound.GetComponent<LibrarySound>().SetAmp(currentAmp);
+        librarySound.GetComponent<LibrarySound>().SetFrequency(frequency);
+        librarySound.GetComponent<LibrarySound>().isRightHandIn(rightHandIn);
+    }
     void UpdatePitchIndicator()
     {
         indicatorPosY = pitchIndicator.anchoredPosition;
@@ -307,10 +336,9 @@ public class UnitySoundLeap : MonoBehaviour
             }
 
         }
-
-
     }
-    */
+     */
+
 
     public void SetOctave(float newNumber)
     {
