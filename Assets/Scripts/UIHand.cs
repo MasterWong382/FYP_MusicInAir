@@ -19,9 +19,9 @@ public class UIHand : MonoBehaviour
 
 
     public UnitySoundLeap unitySound;
-    float numOfOctave=3;
+    float numOfOctave;
     string[] savedOctave = {"1","1.5","2","3"};
-    int currentOctaveIndex = 3; //default is 2 octaves
+    int currentOctaveIndex = 1; //default
     public Text octaveStr;
 
 
@@ -38,8 +38,10 @@ public class UIHand : MonoBehaviour
 
     void Start()
     {
+        numOfOctave=float.Parse(savedOctave[currentOctaveIndex]);
+        UpdateGuides();
         unitySound.SetOctave(numOfOctave);
-        numOfOctave = unitySound.GetOctave();
+      //  print(savedOctave[currentOctaveIndex]);
         octaveStr.text = numOfOctave.ToString();
         fixedOrUnfixed.text = "UnFixed";
     }
@@ -66,7 +68,7 @@ public class UIHand : MonoBehaviour
             guide2_piano.SetActive(true);
         }
 
-        else if (numOfOctave == 1.5)
+        else if (numOfOctave == 1.5f)
         {
             guide1AndHalf.SetActive(true);
             guide1AndHalf_piano.SetActive(true);

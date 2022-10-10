@@ -1208,8 +1208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b2c4fbd14cae44289f45d2d88bb60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useSoundLibrary: 1
+  useSoundLibrary: 0
   uiScript: {fileID: 1936412973}
+  startingFrequency: 440
   numOfOctave: 2
   cam: {fileID: 1264439861}
   pitchIndicator: {fileID: 1913046328}
@@ -1495,6 +1496,7 @@ GameObject:
   - component: {fileID: 1725727004}
   - component: {fileID: 1725727003}
   - component: {fileID: 1725727002}
+  - component: {fileID: 1725727005}
   m_Layer: 0
   m_Name: CSoundLibrary
   m_TagString: Untagged
@@ -1535,24 +1537,15 @@ MonoBehaviour:
   loudWarningThreshold: 10
   csoundScore: 
   environmentSettings: []
-  _csoundFileGUID: 2795d57346cdfc5439f76d4366f50a6c
-  _csoundString: "<CsoundSynthesizer>\r\n<CsOptions>\r\n-n -d \r\n</CsOptions>\r\n\r\nsr=44100
-    ; Sample Rate\r\nkr=22050 ; Control Rate\r\nksmps=2  ; sr/kr As far as I know
-    this is always the case\r\nnchnls=2 ; 1=mono, 2=stereo, 4=quad\r\n\r\n<CsInstruments>\r\ninstr 
-    1                     ; Instrument 1 begins here\r\nkfreq chnget \"Frequency\"    
-    ; Frequency\r\nkamp chnget \"Amplitude\"      ; Amplitude            \r\nitabl1
-    =      2                   ; Waveform Table\r\naout   oscil  kamp*40000, kfreq,
-    itabl1    ; An oscillator\r\n       outs   aout, aout            ; Output the
-    results to a stereo sound file\r\n       endin                        ; Instrument
-    1 ends here\r\n</CsInstruments>\r\n\r\n<CsScore>\r\n; SCORE\r\nf1 0 16384 10
-    1                                          ; Sine\r\nf2 0 16384 10 1 0.5 0.3
-    0.25 0.2 0.167 0.14 0.125 .111   ; Sawtooth\r\nf3 0 16384 10 1 0   0.3 0    0.2
-    0     0.14 0     .111   ; Square\r\nf4 0 16384 10 1 1   1   1    0.7 0.5   0.3 
-    0.1          ; Pulse\r\nf5 0 16384 10 1 0.3 0.05 0.1 0.01                       
-    ; Custom\r\n\r\n;Instrument#(p1) Start(p2) Duration(p3) Amplitude(p4) Frequency(p5)
-    Table(p6)\r\ni1               0         3600\r\n\r\n</CsScore>\r\n</CsoundSynthesizer>"
-  _csoundFileName: instrument1.csd
-  _csoundAsset: {fileID: 102900000, guid: 2795d57346cdfc5439f76d4366f50a6c, type: 3}
+  _csoundFileGUID: d046a6a941a6a8e47a642d95a2df8634
+  _csoundString: "<CsoundSynthesizer>\r\n<CsOptions>\r\n-n -d\r\n</CsOptions>\r\n<CsInstruments>\r\nsr
+    = 44100\r\nksmps = 32  \r\nnchnls = 2\r\n0dbfs  = 1\r\n\r\ninstr 1\r\n\r\nkfreq
+    chnget \"Frequency\"\r\nkc1 = 5\r\nkvdepth = .01\r\nkvrate = 6\r\nkamp chnget
+    \"Amplitude\"\r\nkc2  line 5, p3, p4\r\nasig fmpercfl .5*kamp, kfreq, kc1, kc2,
+    kvdepth, kvrate\r\n     outs asig, asig\r\nendin\r\n\r\n\r\n</CsInstruments>\r\n<CsScore>\r\n;
+    sine wave.\r\nf 1 0 32768 10 1\r\n\r\ni1 0 100 1\r\n\r\ne\r\n\r\n</CsScore>\r\n</CsoundSynthesizer>"
+  _csoundFileName: instrument3.csd
+  _csoundAsset: {fileID: 102900000, guid: d046a6a941a6a8e47a642d95a2df8634, type: 3}
   _channels: []
   _availableAudioChannels: []
   _drawCsoundString: 0
@@ -1669,6 +1662,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c256d2b057a850d48bf0adb83f9f9e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  csoundUnity: {fileID: 1725727002}
+  test: 1
+  preset: 60
+--- !u!114 &1725727005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725727000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a6cac27ac771a4c81da4f418a1ea8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundFontsNames: []
+  csoundUnity: {fileID: 1725727002}
+  frequency: 1
+  preset: 60
 --- !u!1 &1839342022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,7 +2680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202414991739554824, guid: 58c3f8ba427ace74d9dad7654d5e5b35, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -303
+      value: -303.00006
       objectReference: {fileID: 0}
     - target: {fileID: 1202414991759039770, guid: 58c3f8ba427ace74d9dad7654d5e5b35, type: 3}
       propertyPath: m_SizeDelta.x

@@ -14,7 +14,7 @@ public class UnitySoundLeap : MonoBehaviour
     AudioSource audioSource;
     Vector3 mousePos;
     double frequency = 440;
-    int startingFrequency = 440;
+    public double startingFrequency = 220;
     double amplitude = 1;
     double currentAmp = 0;
     double maxAmp = 4;
@@ -173,8 +173,9 @@ public class UnitySoundLeap : MonoBehaviour
         }
         // UpdateLibrarySound();
         // UpdateDefaultSound(); 
-      //  _csound.SetChannel("Frequency", frequency);
-      //  _csound.SetChannel("Amplitude", currentAmp);
+        //  _csound.SetChannel("Frequency", frequency);
+        //  _csound.SetChannel("Amplitude", currentAmp);
+        
     }
 
     void UpdateDefaultSound()
@@ -346,10 +347,10 @@ public class UnitySoundLeap : MonoBehaviour
         CalculateTotalNote();
     }
 
-    public int GetOctave()
+    public float GetOctave()
     {
 
-        return (int)numOfOctave;
+        return numOfOctave;
 
     }
 

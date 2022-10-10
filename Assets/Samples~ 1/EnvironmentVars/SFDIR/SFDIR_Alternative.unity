@@ -147,17 +147,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615068471}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6a6cac27ac771a4c81da4f418a1ea8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _soundFontsNames:
-  - 07AcousticGuitar
-  - sf_GMbank
-  csoundUnity: {fileID: 2002024822}
+  - VintageDreamsWaves
+  csoundUnity: {fileID: 0}
   frequency: 1
-  preset: 8
+  preset: 60
 --- !u!4 &615068473
 Transform:
   m_ObjectHideFlags: 0
@@ -356,12 +355,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
+      propertyPath: _csoundAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: d046a6a941a6a8e47a642d95a2df8634, type: 3}
+    - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
+      propertyPath: _csoundString
+      value: "<CsoundSynthesizer>\r\n<CsOptions>\r\n-n -d\r\n</CsOptions>\r\n<CsInstruments>\r\nsr
+        = 44100\r\nksmps = 32  \r\nnchnls = 2\r\n0dbfs  = 1\r\n\r\ninstr 1\r\n\r\nkfreq
+        = 110\r\nkc1 = 5\r\nkvdepth = .01\r\nkvrate = 6\r\n\r\nkc2  line 5, p3, p4\r\nasig
+        fmpercfl .5, kfreq, kc1, kc2, kvdepth, kvrate\r\n     outs asig, asig\r\nendin\r\n\r\n\r\n</CsInstruments>\r\n<CsScore>\r\n;
+        sine wave.\r\nf 1 0 32768 10 1\r\n\r\ni 1 0 4 5\r\n\r\ne\r\n\r\n</CsScore>\r\n</CsoundSynthesizer>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
       propertyPath: _drawChannels
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
       propertyPath: _drawTestScore
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
+      propertyPath: _csoundFileGUID
+      value: d046a6a941a6a8e47a642d95a2df8634
+      objectReference: {fileID: 0}
+    - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
+      propertyPath: _csoundFileName
+      value: instrument3.csd
       objectReference: {fileID: 0}
     - target: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
       propertyPath: _drawCsoundString
@@ -417,18 +440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3655006456468214349, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
---- !u!114 &2002024822 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 82146628349730517, guid: ec632e2c3dd0af14ab1bcb6dfcc57e8a, type: 3}
-  m_PrefabInstance: {fileID: 2002024821}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d20258c641c94f0ea3dc32cfe3de904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

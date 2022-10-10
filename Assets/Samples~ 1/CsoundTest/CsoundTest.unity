@@ -175,24 +175,20 @@ MonoBehaviour:
   loudWarningThreshold: 10
   csoundScore: 
   environmentSettings: []
-  _csoundFileGUID: 2795d57346cdfc5439f76d4366f50a6c
-  _csoundString: "<CsoundSynthesizer>\r\n<CsOptions>\r\n-n -d \r\n</CsOptions>\r\n\r\nsr=44100
-    ; Sample Rate\r\nkr=22050 ; Control Rate\r\nksmps=2  ; sr/kr As far as I know
-    this is always the case\r\nnchnls=2 ; 1=mono, 2=stereo, 4=quad\r\n\r\n<CsInstruments>\r\ninstr 
-    1                     ; Instrument 1 begins here\r\nkfreq chnget \"Frequency\"    
-    ; Frequency\r\nkamp chnget \"Amplitude\"      ; Amplitude            \r\nitabl1
-    =      2                   ; Waveform Table\r\naout   oscil  kamp*40000, kfreq,
-    itabl1    ; An oscillator\r\n       outs   aout, aout            ; Output the
-    results to a stereo sound file\r\n       endin                        ; Instrument
-    1 ends here\r\n</CsInstruments>\r\n\r\n<CsScore>\r\n; SCORE\r\nf1 0 16384 10
-    1                                          ; Sine\r\nf2 0 16384 10 1 0.5 0.3
-    0.25 0.2 0.167 0.14 0.125 .111   ; Sawtooth\r\nf3 0 16384 10 1 0   0.3 0    0.2
-    0     0.14 0     .111   ; Square\r\nf4 0 16384 10 1 1   1   1    0.7 0.5   0.3 
-    0.1          ; Pulse\r\nf5 0 16384 10 1 0.3 0.05 0.1 0.01                       
-    ; Custom\r\n\r\n;Instrument#(p1) Start(p2) Duration(p3) Amplitude(p4) Frequency(p5)
-    Table(p6)\r\ni1               0         3600\r\n\r\n</CsScore>\r\n</CsoundSynthesizer>"
-  _csoundFileName: instrument1.csd
-  _csoundAsset: {fileID: 102900000, guid: 2795d57346cdfc5439f76d4366f50a6c, type: 3}
+  _csoundFileGUID: c6fc8d227637cd84e9ecda54e563dd62
+  _csoundString: "<CsoundSynthesizer>\r\n<CsOptions>\r\n; Select audio/midi flags
+    here according to platform\r\n-odac     ;;;realtime audio out\r\n;-iadc    ;;;uncomment
+    -iadc if real audio input is needed too\r\n; For Non-realtime ouput leave only
+    the line below:\r\n; -o prepiano.wav -W ;;; for file output any platform\r\n</CsOptions>\r\n<CsInstruments>\r\n\r\nsr
+    = 44100\r\nksmps = 32\r\nnchnls = 2\r\n0dbfs  = 1\r\n\r\ninstr 1\r\n;;         
+    fund NS detune stiffness decay loss (bndry) (hammer) scan prep\r\naa,ab prepiano
+    60, 3, 10, p4, 3, 0.002, 2, 2, 1, 5000, -0.01, p5, p6, 0, 0.1, 1, 2\r\n     
+    outs aa*.2, ab*.2\r\n\r\nendin\r\n</CsInstruments>\r\n<CsScore>\r\nf1 0 8 2 1
+    0.6 10 100 0.001 ;; 1 rattle\r\nf2 0 8 2 1 0.7 50 500 1000  ;; 1 rubber\r\ni1
+    0.0 1 1 0.09 20\r\ni1 1 .  -1 0.09 40        ;; 1 -> skip initialisation\r\ni1
+    2 .  -1 0.09 60\r\ni1 3 .  -1 0.09 80\r\ni1 4 1.8  -1 0.09 100\r\ne\r\n</CsScore>\r\n</CsoundSynthesizer>"
+  _csoundFileName: instrument2.csd
+  _csoundAsset: {fileID: 102900000, guid: c6fc8d227637cd84e9ecda54e563dd62, type: 3}
   _channels: []
   _availableAudioChannels: []
   _drawCsoundString: 0
@@ -304,7 +300,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783735157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c0bd08d6d0e1468d822796232fa3853, type: 3}
   m_Name: 

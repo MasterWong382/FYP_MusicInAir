@@ -1,8 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace Csound.EnvironmentVars
-{
+
     public class Initializer_Alternative : MonoBehaviour
     {
         [Tooltip("The names of the sound font files to copy from Resources to the Persistent Data Path folder. " +
@@ -38,8 +37,8 @@ namespace Csound.EnvironmentVars
                 }
             }
             // activate CsoundUnity!
-            csoundUnity.gameObject.SetActive(true);
-
+      
+            csoundUnity.enabled = true;
         }
 
         void Update()
@@ -48,4 +47,4 @@ namespace Csound.EnvironmentVars
             csoundUnity.SetChannel("Preset", preset);
         }
     }
-}
+
