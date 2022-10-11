@@ -12,7 +12,7 @@ nchnls = 2
 0dbfs  = 1
 
 ; load in two soundfonts
-isf	sfload	"VintageDreamsWaves.sf2"
+isf	sfload	"sf_GMbank.sf2"
 
 sfplist isf
 	

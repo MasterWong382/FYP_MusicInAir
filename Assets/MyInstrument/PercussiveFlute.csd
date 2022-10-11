@@ -14,7 +14,7 @@ kfreq chnget "Frequency"
 kc1 = 5
 kvdepth = .01
 kvrate = 6
-kamp chnget "Amplitude"
+kamp  chnget "Amplitude"
 kc2  line 5, p3, p4
 asig fmpercfl .5*kamp, kfreq, kc1, kc2, kvdepth, kvrate
      outs asig, asig

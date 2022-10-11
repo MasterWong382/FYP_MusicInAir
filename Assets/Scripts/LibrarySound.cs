@@ -52,11 +52,12 @@ public class LibrarySound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        
 
         if (rightHandIn)
         {
             csoundUnity.SetChannel("Frequency", frequency);
+
             csoundUnity.SetChannel("Amplitude", currentAmp);
 
       
