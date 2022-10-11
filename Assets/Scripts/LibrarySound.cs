@@ -13,12 +13,14 @@ public class LibrarySound : MonoBehaviour
         "otherwise the CsoundUnity initialization will run. " +
         "Setting the Environment Variables on a running Csound instance can have unintended effects.")]
     */
-    public CsoundUnity csoundUnity;
+    CsoundUnity csoundUnity;
+    public GameObject[] allInstruments;
     double currentAmp = 0;
     double frequency = 440;
     public float test;
     bool rightHandIn;
     public int preset;
+    int instrumentIndex = 0;
     void Start()
     {
         /*
@@ -47,22 +49,37 @@ public class LibrarySound : MonoBehaviour
         csoundUnity.SetChannel("Preset", preset);
         csoundUnity.enabled = true;
         */
+        csoundUnity = allInstruments[0].GetComponent<CsoundUnity>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
         if (rightHandIn)
         {
             csoundUnity.SetChannel("Frequency", frequency);
-
             csoundUnity.SetChannel("Amplitude", currentAmp);
 
-      
         }
+        else
+        {
+            csoundUnity.SetChannel("Amplitude", 0);
+        }
+    }
 
+    void UpdateInstrument()
+    {
+        TurnOffAllInstruments();
+        allInstruments[instrumentIndex].SetActive(true);
+        csoundUnity = allInstruments[instrumentIndex].GetComponent<CsoundUnity>();
+    }
+
+    void TurnOffAllInstruments()
+    {
+        for (int i = 0; i < allInstruments.Length; i++)
+        {
+            allInstruments[i].SetActive(false);
+        }
     }
 
     public void SetAmp(double amp)
@@ -78,6 +95,12 @@ public class LibrarySound : MonoBehaviour
     public void isRightHandIn(bool rightHand)
     {
         rightHandIn = rightHand;
+    }
+
+    public void SetWaveTypeIndex(int index)
+    {
+        instrumentIndex = index;
+        UpdateInstrument();
     }
 
 }

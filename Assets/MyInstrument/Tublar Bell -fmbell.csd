@@ -24,14 +24,14 @@ endin
 
 instr 2
 
-kamp = p4
+kamp chnget "Amplitude"
 kfreq chnget "Frequency"
 kc1 = p5
 kc2 = p6
 kvdepth = 0.005
 kvrate = 6
 
-asig fmbell kamp, kfreq, kc1, kc2, kvdepth, kvrate, 1, 1, 1, 1, 1,10000
+asig fmbell kamp*0.2, kfreq, kc1, kc2, kvdepth, kvrate, 1, 1, 1, 1, 1,10000
      outs asig, asig
 endin
 
@@ -41,8 +41,8 @@ endin
 f 1 0 32768 10 1
 
 
-i2 0 10000 .2  5 5 
 
+i2 0 10000 .2  5 5 10000
 
 e
 

@@ -30,10 +30,10 @@ public class UIHand : MonoBehaviour
 
     //instrument Select
     public Dropdown musicSelectDropDown;
+    public Dropdown CSoundInstrumentDropDown;
 
     public GameObject keyBoardGuidesOnly;
     public GameObject keyGuidesOnly;
-    bool showPianoGuide = false;
  
 
     void Start()
@@ -134,15 +134,10 @@ public class UIHand : MonoBehaviour
         settingPage.SetActive(false);
     }
 
-    public void PlaySound()
-    {
-        unitySound.SwitchPlay();
-    }
-
     public void SwitchFixedFrequency()
     {
         unitySound.FixedUnFixed();
-        
+
         if (fixedOrUnfixed.text == "Fixed")
         {
             fixedOrUnfixed.text = "UnFixed";
@@ -151,14 +146,26 @@ public class UIHand : MonoBehaviour
         {
             fixedOrUnfixed.text = "Fixed";
         }
-
     }
 
       public void UpdateInstrument()
     {
         unitySound.SetWaveType(musicSelectDropDown.value);
     }
-   
+
+    public void UpdateCSoundInstrument()
+    {
+        unitySound.SetCSoundInstrument(CSoundInstrumentDropDown.value);
+    }
+
+    public void PressToggleSoundLibrary()
+    {
+        unitySound.ToggleSoundLibrary();
+        musicSelectDropDown.interactable = !musicSelectDropDown.interactable;
+        CSoundInstrumentDropDown.interactable = !CSoundInstrumentDropDown.interactable;
+    }
+
+
 
     public void ToggleNoteGuide()
     {

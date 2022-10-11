@@ -14,7 +14,6 @@ public class DefaultSound : MonoBehaviour
     int waveTypeIndex = 0;
     double frequency = 440;
     double currentAmp = 0;
-    double maxAmp = 4;
     bool rightHandIn;
 
     // Start is called before the first frame update
@@ -37,6 +36,7 @@ public class DefaultSound : MonoBehaviour
         rightHandIn = rightHand;
     }
 
+  
     void OnAudioFilterRead(float[] data, int channels)
     {
         // if (playSound)

@@ -20,8 +20,8 @@ public class UnitySoundLeap : MonoBehaviour
     double maxAmp = 4;
     private double increment;
     private double phase;
-    private double sampling_frequency = 48000;
-    bool playSound = false;
+
+
     double powerRaised;
     float fixedPowerRaised;
     float sizeOfNote;
@@ -49,9 +49,7 @@ public class UnitySoundLeap : MonoBehaviour
     Vector3 volIndicatorPos;
     public int maxIndicatorVolPos = 128;
     int waveTypeIndex = 0;
-    double lerpVolume = 0;
-    bool canLerpVol = false;
-    double lastFrequency = 0;
+
     float speedOfAmpChange = 2f;
     bool gotLeftHand = false;
     public Text volumeDisplay;
@@ -62,7 +60,9 @@ public class UnitySoundLeap : MonoBehaviour
     public float waveLengthInSeconds = 2.0f;
     public GameObject librarySound;
     public GameObject unityDefaultSound;
-    CsoundUnity _csound;
+
+
+
     //Csound
 
 
@@ -74,12 +74,14 @@ public class UnitySoundLeap : MonoBehaviour
     {
         //  Debug.Log("Screen Height : " + Screen.height);
         // Debug.Log("Screen Width : " + Screen.width);
-        _csound = GetComponent<CsoundUnity>();
         CalculateTotalNote();
         UpdateGuide();
         rightHandPositionRange = maxPitchPosition - minPitchPosition;
         leftHandPositionRange = maxVolumePosition - minVolumePosition;
-        useSoundLibrary = true;
+       // useSoundLibrary = true;
+     
+        uiScript.PressToggleSoundLibrary();
+        
     }
 
     // Update is called once per frame
@@ -178,6 +180,11 @@ public class UnitySoundLeap : MonoBehaviour
         
     }
 
+    public void ToggleSoundLibrary() //Called from UIHand
+    {
+        useSoundLibrary = !useSoundLibrary;
+    }
+
     void UpdateDefaultSound()
     {
         unityDefaultSound.GetComponent<DefaultSound>().SetAmp(currentAmp);
@@ -217,6 +224,11 @@ public class UnitySoundLeap : MonoBehaviour
     public void SetWaveType(int index)
     {
         waveTypeIndex  = index;
+    }
+
+    public void SetCSoundInstrument(int index)
+    {
+        librarySound.GetComponent<LibrarySound>().SetWaveTypeIndex(index);
     }
 
 
@@ -279,7 +291,6 @@ public class UnitySoundLeap : MonoBehaviour
     /*
     void OnAudioFilterRead(float[] data, int channels)
     {
-        // if (playSound)
         if (rightHandIn)
         {
 
@@ -354,10 +365,6 @@ public class UnitySoundLeap : MonoBehaviour
 
     }
 
-    public void SwitchPlay()
-    {
-        playSound = !playSound;
-    }
 
     public void FixedUnFixed()
     {
