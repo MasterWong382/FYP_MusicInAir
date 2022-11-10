@@ -31,10 +31,13 @@ public class UIHand : MonoBehaviour
     //instrument Select
     public Dropdown musicSelectDropDown;
     public Dropdown CSoundInstrumentDropDown;
+    public Dropdown musicTrackSelect;
 
     public GameObject keyBoardGuidesOnly;
     public GameObject keyGuidesOnly;
- 
+
+
+    public BackgroundTracks backgroundTrack;
 
     void Start()
     {
@@ -109,7 +112,6 @@ public class UIHand : MonoBehaviour
             UpdateGuides();
             unitySound.SetOctave(numOfOctave);
         }
-
     }
 
     public void DecreaseOctave()
@@ -122,7 +124,6 @@ public class UIHand : MonoBehaviour
             unitySound.SetOctave(numOfOctave);
         }
     }
-
 
     public void DisplaySetting()
     {
@@ -178,5 +179,15 @@ public class UIHand : MonoBehaviour
         keyBoardGuidesOnly.SetActive(!keyBoardGuidesOnly.activeSelf);
     }
 
+
+    public void UpdateBackgroundTrack()
+    {
+        backgroundTrack.SetCurrentTrack(musicTrackSelect.value);
+    }
+
+    public void TogglePlayTrack()
+    {
+        backgroundTrack.PlayTrack();
+    }
  
 }

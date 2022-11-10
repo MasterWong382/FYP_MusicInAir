@@ -12,7 +12,7 @@ nchnls=2 ; 1=mono, 2=stereo, 4=quad
 instr  1                     ; Instrument 1 begins here
 kfreq chnget "Frequency"     ; Frequency
 kamp chnget "Amplitude"      ; Amplitude            
-itabl1 =      5                   ; Waveform Table
+itabl1 =      1                  ; Waveform Table
 aout   oscil  kamp*40000, kfreq, itabl1    ; An oscillator
        outs   aout, aout            ; Output the results to a stereo sound file
        endin                        ; Instrument 1 ends here
@@ -31,3 +31,5 @@ i1               0         3600
 
 </CsScore>
 </CsoundSynthesizer>
+
+

@@ -62,14 +62,6 @@ public class UnitySoundLeap : MonoBehaviour
     public GameObject unityDefaultSound;
 
 
-
-    //Csound
-
-
-
-    // Start is called before the first frame update
-
-
     void Start()
     {
         //  Debug.Log("Screen Height : " + Screen.height);
@@ -93,7 +85,6 @@ public class UnitySoundLeap : MonoBehaviour
         Hand f1 = new Hand();
         Hand f2 = new Hand();
 
-
         List<Hand> hands = frame.Hands;
 
         for (int visiblehands = 0; visiblehands < hands.Count; visiblehands++)
@@ -108,11 +99,11 @@ public class UnitySoundLeap : MonoBehaviour
         //Right Hand Handle Pitch
         rightHandPosition = (f2.Fingers[1].TipPosition.y+ f2.Fingers[2].TipPosition.y + 
                         f2.Fingers[3].TipPosition.y+ f2.Fingers[4].TipPosition.y)/ 4;
-
       
         //Left Hand Handle Volume
-        leftHandPosition = f1.Fingers[2].TipPosition.y;
-       
+        leftHandPosition = (f1.Fingers[1].TipPosition.y + f1.Fingers[2].TipPosition.y +
+                        f1.Fingers[3].TipPosition.y + f1.Fingers[4].TipPosition.y) / 4;
+
 
         if (f1.IsLeft)
             gotLeftHand = true;
@@ -214,11 +205,8 @@ public class UnitySoundLeap : MonoBehaviour
 
     void UpdateVolume()
     {
-        // amplitude = ((leftHandPosition - minVolumePosition) / leftHandPositionRange) * (maxAmp-0.5) +0.5;
         amplitude = ((leftHandPosition - minVolumePosition) / leftHandPositionRange) * (maxAmp) ;
         amplitude = Mathf.Clamp((float)amplitude, 0, (float)maxAmp);
-        //  print(leftHandPosition);
-       
     }
 
     public void SetWaveType(int index)
@@ -231,11 +219,9 @@ public class UnitySoundLeap : MonoBehaviour
         librarySound.GetComponent<LibrarySound>().SetWaveTypeIndex(index);
     }
 
-
     void CalculateTotalNote()
     {
         int totalNotes = (int)(numOfOctave * 12);
-        //sizeOfNote = Screen.height / totalNotes;
         sizeOfNote = (maxPitchPosition - minPitchPosition) / totalNotes;
     }
 
@@ -248,7 +234,6 @@ public class UnitySoundLeap : MonoBehaviour
                 currentAmp -= Time.deltaTime * speedOfAmpChange;
             }
         }
-
         else
         {
             if (Math.Abs(currentAmp - amplitude) > 0.0f)
@@ -259,7 +244,6 @@ public class UnitySoundLeap : MonoBehaviour
                     currentAmp -= Time.deltaTime * speedOfAmpChange;
             }
         }
-       
     }
 
     void UpdateGuide()
@@ -269,8 +253,6 @@ public class UnitySoundLeap : MonoBehaviour
 
     void UnFixedFrequency()
     {
-        //   mousePos = Input.mousePosition;
-        //  noteIndex = mousePos.y/ sizeOfNote; //0 to 36
         noteIndex = (rightHandPosition - minPitchPosition) / sizeOfNote;
         powerRaised = noteIndex / 12; //0 to 3
         frequency = startingFrequency * System.Math.Pow(2, powerRaised);

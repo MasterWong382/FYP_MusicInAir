@@ -3,7 +3,6 @@
 -n -d
 </CsOptions>
 <CsInstruments>
-
 sr = 44100
 ksmps = 32  
 nchnls = 2
@@ -27,9 +26,7 @@ endin
 ;sine wave.
 f 1 0 32768 10 1
 
-i 1 0 10000  5  5 0.1
-
+i 1 0 100  5  5 0.1
 e
-
 </CsScore>
-</CsoundSynthesizer>
+</CsoundSynthsizer>
