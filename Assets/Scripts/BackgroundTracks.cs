@@ -32,7 +32,7 @@ public class BackgroundTracks : MonoBehaviour
             {
                 countDown -= Time.deltaTime;
                 timer.gameObject.SetActive(true);
-                timer.text = ((int)countDown).ToString();
+                timer.text = "Starting in  " + ((int)countDown).ToString() + " seconds";
                 print(timer);
             }
             else
@@ -53,11 +53,14 @@ public class BackgroundTracks : MonoBehaviour
         playTrack = !playTrack;
         if (playTrack)
         {
+            timer.gameObject.SetActive(true);
+            countDown = timerToStart[currentTrack];
             startCountDown = true;
             audioSource.Play();
         }
         else
         {
+            timer.gameObject.SetActive(false);
             startCountDown = false;
             audioSource.Stop();
         }
@@ -76,7 +79,6 @@ public class BackgroundTracks : MonoBehaviour
     public void SetCurrentTrack(int index)
     {
         currentTrack = index;
-        countDown = timerToStart[index];
         LoadAudioClip();
         DisplayPianoSheet();
     }

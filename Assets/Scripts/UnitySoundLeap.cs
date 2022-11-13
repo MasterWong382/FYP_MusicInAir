@@ -124,7 +124,7 @@ public class UnitySoundLeap : MonoBehaviour
             UpdateVolume();
         }
 
-        if (rightHandPosition >= minPitchPosition && rightHandPosition <= maxPitchPosition)
+        if (rightHandPosition >= (minPitchPosition-100) && rightHandPosition <= (maxPitchPosition+100))
             rightHandIn = true;
         else
             rightHandIn = false;

@@ -11,6 +11,7 @@ nchnls = 2
 instr 1
 kCarFreq chnget "Frequency"
  kModFreq chnget "Frequency"
+kAmp chnget "Amplitude"
  kIndex = 5
  kIndexM = 0
  kMaxDev = kIndex*kModFreq
@@ -19,7 +20,7 @@ kCarFreq chnget "Frequency"
  aEnv expseg .001, 0.2, 1, p3-0.3, 1, 0.2, 0.001
  aModAmp = kMinDev+kVarDev*aEnv
  aModulator poscil aModAmp, kModFreq
- aCarrier poscil 0.3*aEnv, kCarFreq+aModulator
+ aCarrier poscil kAmp*0.3*aEnv, kCarFreq+aModulator
  outs aCarrier, aCarrier
 endin
 
